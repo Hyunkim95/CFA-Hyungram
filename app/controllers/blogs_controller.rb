@@ -8,8 +8,13 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.create(blog_params)
-    redirect_to blogs_path #redirects to index
+    if @blog = Blog.create(blog_params)
+      flash[:success] = "Your post has been created!"
+      redirect_to blogs_path
+    else
+      flash.now[:alert] = "Your new post couldn't be created!  Please check the form."
+      render :new
+    end
   end
 
   def show
@@ -22,14 +27,24 @@ class BlogsController < ApplicationController
 
   def update
     set_post
-    @blog.update(blog_params)
-    redirect_to blogs_path(@blog)
+    if @blog.update(blog_params)
+      flash[:success] = "Post updated."
+      redirect_to blogs_path
+    else
+      flash.now[:alert] = "Update failed.  Please check the form."
+      render :edit
+    end
   end
 
   def destroy
-    @blog = Blog.find(params[:id])
-    @blog.destroy
-    redirect_to blogs_path
+    set_post
+    if @blog.destroy
+      flash[:success] = 'Post deleted'
+      redirect_to blogs_path
+    else
+      flash.now[:alert] = "Post not deleted"
+      render :destroy
+    end
   end
 
   private
@@ -38,7 +53,7 @@ class BlogsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @blog = Blog.find(params[:id])
   end
 
 end
