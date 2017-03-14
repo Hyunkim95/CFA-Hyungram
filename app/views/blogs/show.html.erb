@@ -1,0 +1,18 @@
+<div class="blogs-wrapper row">
+    <div class="blog">
+      <div class="blog-head">
+        <div class="name">
+          Ben Walker
+        </div>
+      </div>
+      <div class="image center-block">
+        <%= image_tag @blog.image.url(:medium), class:'img-responsive' %>
+      </div>
+      <p class="description">
+        <%= @blog.description %>
+      </p>
+      <div class="text-center">
+        <%= link_to "Cancel", blog_path %>
+      </div>
+    </div>
+</div>

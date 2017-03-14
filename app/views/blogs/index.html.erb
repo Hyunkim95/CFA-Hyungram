@@ -1,0 +1,17 @@
+<div class="blogs-wrapper row">
+  <% @blogs.each do |blog| %>
+    <div class="blog">
+      <div class="blog-head">
+        <div class="name">
+          Ben Walker
+        </div>
+      </div>
+      <div class="image center-block">
+        <%= link_to (image_tag blog.image.url(:medium), class:'img-responsive'), blog_path(blog) %>
+      </div>
+      <p class="description">
+        <%= blog.description %>
+      </p>
+    </div>
+  <% end %>
+</div>
