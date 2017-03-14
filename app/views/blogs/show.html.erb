@@ -11,8 +11,10 @@
       <p class="description">
         <%= @blog.description %>
       </p>
-      <div class="text-center">
-        <%= link_to "Cancel", blog_path %>
+      <div class="text-center edit-links">
+        <%= link_to "Cancel", blogs_path %>
+        |
+        <%= link_to "Edit Post", edit_blog_path(@blog) %>
       </div>
     </div>
 </div>

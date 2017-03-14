@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="image center-block">
-        <%= link_to (image_tag blog.image.url(:medium), class:'img-responsive'), blog_path(blog) %>
+        <%= link_to image_tag(blog.image.url(:medium)), blog_path(blog), class:'img-responsive' %>
       </div>
       <p class="description">
         <%= blog.description %>
