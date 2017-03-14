@@ -13,21 +13,32 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blog = Blog.find(params[:id])
+    set_post
   end
 
   def edit
-    @blog = Blog.find(params[:id])
+    set_post
   end
 
   def update
-    @blog = blog.update(blog_params)
+    set_post
+    @blog.update(blog_params)
+    redirect_to blogs_path(@blog)
+  end
+
+  def destroy
+    @blog = Blog.find(params[:id])
+    @blog.destroy
     redirect_to blogs_path
   end
 
   private
   def blog_params
     params.require(:blog).permit(:image, :description) #only permits images and description
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
 end
